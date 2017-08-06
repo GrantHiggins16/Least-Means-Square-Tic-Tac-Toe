@@ -1,0 +1,73 @@
+
+equation to evaluate board: V(b) = 1 for win, v(b) = -1 for loss, and v(b) = 0 for draw
+vapprox(b) = 
+* class: game
+** __init__
+*** board = [3][3] filled with 0s
+** print 
+*** represent by either x, y, or a number representing label for play
+** place x(int)
+*** places a 1 in correct place on board
+** place o(int)
+*** places a 2 in correct place on board
+** determineWinner()
+*** returns 0 if in progress, 1 if x wins, 2 if o wins, 3 if draw
+** isValidMove()
+*** returns true if valid move and error if not
+**** check that number exists on board
+**** check that position is not occupied
+** getValidMoves()
+*** returns list of numbers representing valid places to place thingamabobs
+** getWinningMovesX()
+*** returns number of ways x can win next turn 
+** getWinningMovesO()
+*** returns number of ways o can win next turn
+* class: ticTacToeMachine
+** __init__(xFlag)
+*** xFlag = xFlag //decides whether computer is x or o
+*** weights = 0
+*** x list:
+**** ways opp can win next turn
+**** ways comp can win next turn
+**** number of ways to get to winning state
+*** numWins = 0
+*** numLosses = 0
+** performanceSystem(self, games, opp)
+*** always start empty game but go on from there
+*** reuturn [][] where [0][] is opp moves and [1][] is comp moves
+** makeMove(board)
+*** helper for performanceSystem
+*** makes move based on highest expected v
+** critic(self, historyOfMoves from performance system function)
+*** returns set of training examples of the target functions
+*** move = b and result = v
+*** return list of trainingexamples
+** generalizer(trainingExample[])
+*** takes training examples and produces output hypothesis that is estimate of target functions
+** expiriment generator
+*** send preformance system a new game
+
+* class trainingExample:
+** init(moves, value):
+*** b = move
+*** v = value
+
+* class randomOpponent:
+//makes moves based on random number generator
+** init:
+*** xFlag 
+** makeMove(board)
+* class humanOpponent:
+** init:
+*** xFlag
+** makemove(board)
+* function teachProgram(numbTests, machine)
+** for number of tests run machine through tests against random opponent
+
+* if __name__ = main
+** teachProgram 1000 times 
+** new game with humanOpponent forever
+* toDo:
+-refactor everything to do with the game itself - i want a single array not a list of lists
+-increase number of Xs analyzed
+-switch ai to always x
